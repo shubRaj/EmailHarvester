@@ -6,7 +6,11 @@
 import scrapy
 
 
-class EmailharvesterItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class EmailPhoneItem(scrapy.Item):
+    """
+        Store email and phone
+    """
+    domain = scrapy.Field()
+    emails = scrapy.Field()
+    phones = scrapy.Field()
+
