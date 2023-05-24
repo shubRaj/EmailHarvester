@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "emailharvester"
+version = "1.0.0"
+description = "Web Crawler for extracting email addresses and phone numbers from websites."
+authors = ["Shub Raj <hello@shubraj.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+scrapy = "^2.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
