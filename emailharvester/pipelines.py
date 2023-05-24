@@ -10,4 +10,9 @@ from itemadapter import ItemAdapter
 
 class EmailharvesterPipeline:
     def process_item(self, item, spider):
+        adapter = ItemAdapter(item)
+        if adapter.get("emails") is None:
+            adapter["emails"] = []
+        if adapter.get("phones") is None:
+            adapter["phones"] = []
         return item

@@ -352,6 +352,17 @@ python-versions = "*"
 user-agents = "*"
 
 [[package]]
+name = "scrapyrt"
+version = "0.13.0"
+description = "Put Scrapy spiders behind an HTTP API"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+Scrapy = ">=1.0.0"
+
+[[package]]
 name = "service-identity"
 version = "21.1.0"
 description = "Service identity verification for pyOpenSSL & cryptography."
@@ -518,7 +529,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "4f4c864eef42b3ad983b0c34639388b3398aa5fd0656b5a3d3819d5988201fc2"
+content-hash = "dff60498749ff94af7d4f5f76e7f322042469e6881dfac21ed2346d08ab78d8d"
 
 [metadata.files]
 attrs = [
@@ -866,6 +877,10 @@ scrapy = [
 scrapy-user-agents = [
     {file = "scrapy_user_agents-0.1.1-py2.py3-none-any.whl", hash = "sha256:284c9af555f3128697a2953ab3cdb987b160b091a12896562d969cf9e81d1350"},
     {file = "scrapy_user_agents-0.1.1.win-amd64.zip", hash = "sha256:aa1f78c8cbae42f1a7159c5ea16c2638ac17e78d7d44111d164ed099ec48705f"},
+]
+scrapyrt = [
+    {file = "scrapyrt-0.13.0-py2.py3-none-any.whl", hash = "sha256:2d033650535c8c0ee9474657e97fc78eb50642fa7e1be0c61420a1b38c81181c"},
+    {file = "scrapyrt-0.13.0.tar.gz", hash = "sha256:cd193a887199ef253a19d902acd8ea99c13fc889fae41b3e3ee63d4449e6cc08"},
 ]
 service-identity = [
     {file = "service-identity-21.1.0.tar.gz", hash = "sha256:6e6c6086ca271dc11b033d17c3a8bea9f24ebff920c587da090afc9519419d34"},
