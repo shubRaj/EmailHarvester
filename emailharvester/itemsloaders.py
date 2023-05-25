@@ -53,10 +53,12 @@ def find_phones(response):
     """
     phones = set() # maintain unique phone numbers
     for phone in response.xpath("//a[contains(@href,'tel')]/@href").getall():
-        mo = re.search(r"[\(\)\d\s\-\+]+",phone)
+        mo = re.search(r"(?!.*00-0000)([\(\)\d\s\-\+]{7,})",phone)
         if mo is not None:
             number = mo.group()
             phones.update({number})
+    matches = re.findall(r'\+?\d{1,2}\s?-?\(?\d{3}\)?-?\s?\d{3}-\d{4}$', response.text)
+    phones.update(set(matches))
     return phones
 
 class EmailPhoneItemLoader(ItemLoader):
