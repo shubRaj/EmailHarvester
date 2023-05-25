@@ -22,7 +22,7 @@ def find_emails(response):
     """
         Returns emails
     """
-    emails = re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}", response.text)
+    emails = re.findall(r"\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?\b", response.text)
     """ maintain unique email lists """
     emails = set(emails)
     """ if cannot find email in plain text """
@@ -53,11 +53,11 @@ def find_phones(response):
     """
     phones = set() # maintain unique phone numbers
     for phone in response.xpath("//a[contains(@href,'tel')]/@href").getall():
-        mo = re.search(r"(?!.*00-0000)([\(\)\d\s\-\+]{7,})",phone)
-        if mo is not None:
+        mo = re.search(r"(?!(?:.*0-0000))[\(\)\d\s\-\+]{7,}",phone)
+        if mo:
             number = mo.group()
             phones.update({number})
-    matches = re.findall(r'\+?\d{1,2}\s?-?\(?\d{3}\)?-?\s?\d{3}-\d{4}$', response.text)
+    matches = re.findall(r'(?!(?:[\d\-\s\(\)\+]*0-0000))(?:\+?\d{1,2}[\s\-])?\(?\d{3}\)?[\s\-]\d{3}[\s\-]\d{4}', response.text)
     phones.update(set(matches))
     return phones
 

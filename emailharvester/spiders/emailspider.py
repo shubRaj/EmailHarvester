@@ -5,7 +5,6 @@ from urllib.parse import urlparse
 import re
 from ..items import EmailPhoneItem
 from ..itemsloaders import EmailPhoneItemLoader
-# def find_
 
 class EmailSpider(CrawlSpider):
     name = "emailspider"
@@ -23,17 +22,16 @@ class EmailSpider(CrawlSpider):
                 for line in f:
                     parsedURL = urlparse(line)
                     self.allowed_domains.append(parsedURL.netloc)
-                    self.urls.append(f"https://{parsedURL.netloc}{parsedURL.path}?{parsedURL.query}")
+                    self.urls.append(f"http://{parsedURL.netloc}{parsedURL.path}?{parsedURL.query}")
 
     def start_requests(self):
         # Yield a request for each domain
         for url in self.urls:
-            yield scrapy.Request(url=url, callback=self.parse)
+            yield scrapy.Request(url=url,callback=self.parse,meta={"domain":urlparse(url).netloc})
 
     def parse(self, response):
-        
         emailPhone = EmailPhoneItemLoader(item = EmailPhoneItem(),selector = response)
-        emailPhone.add_value("domain",urlparse(response.url).netloc)
+        emailPhone.add_value("domain",response.meta.get("domain"))
         emailPhone.add_value("emails",response)
         emailPhone.add_value("phones",response)
         yield emailPhone.load_item()

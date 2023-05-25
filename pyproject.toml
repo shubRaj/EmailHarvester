@@ -11,6 +11,7 @@ python = "^3.10"
 scrapy = "^2.9.0"
 scrapy-user-agents = "^0.1.1"
 scrapyrt = "^0.13.0"
+brotlipy = "^0.7.0"
 
 
 [build-system]
