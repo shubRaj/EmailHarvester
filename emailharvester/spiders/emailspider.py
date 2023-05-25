@@ -19,11 +19,9 @@ class EmailSpider(CrawlSpider):
         super(EmailSpider, self).__init__(*args, **kwargs)
         if domain_file is not None:
             with open(domain_file, 'r') as f:
-                for line in f:
-                    parsedURL = urlparse(line)
-                    self.allowed_domains.append(parsedURL.netloc)
-                    self.urls.append(f"http://{parsedURL.netloc}{parsedURL.path}?{parsedURL.query}")
-
+                for line in f.readlines():
+                    self.allowed_domains.append(line.strip())
+                    self.urls.append(f"http://{line.strip()}")
     def start_requests(self):
         # Yield a request for each domain
         for url in self.urls:
